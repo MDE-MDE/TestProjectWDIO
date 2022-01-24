@@ -23,9 +23,9 @@ export const config: WebdriverIO.Config = {
     // will be called from there.
     //
     specs: [
-        //'./test/specs/**/*.ts'
+        './test/specs/**/*.ts'
         //'./test/specs/github.specs/**/*.ts'
-        './test/specs/github.specs/singUpFirst.ts'
+        //'./test/specs/github.specs/singUpFirst.ts'
         //'./test/specs/github.specs/careers.ts'
         //'./test/specs/secondHomework.ts'
     ],
