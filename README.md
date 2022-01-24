@@ -7,3 +7,5 @@
 npm ci - для установки всех зависимостей
 
 npm test - для запуска тестов
+
+Тест-кейсы: https://docs.google.com/spreadsheets/d/1B6_25_9XxdGlKoZyvCvB-x4lFRpFtW4itxwHt9u4Tao/edit?usp=sharing
