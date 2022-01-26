@@ -8,22 +8,21 @@ const SingUp = new SingUpPage()
 const Rand = new RandomValue()
 const HomeSing = new HomeSingUp()
 
-describe('Ввод произвольных значений в форму регистрации github', () => {
+describe('Открыть и заполнить форму регистрации из поля ввода почты', () => {
     it('Открытие главной страницы github', async () => {
-        //await browser.setWindowSize(1280, 720)
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
         console.log(await browser.getTitle())
     })
 
-    it('Ввод случайного значения в строку ввода емэйла', async function(){
+    it('Ввод случайного значения в поле ввода почты', async function(){
         let email = Rand.emailName('Test')
         await SingUp.inputSingUpEmail.setValue(email)
         await expect(SingUp.inputSingUpEmail).toBeDisplayedInViewport()
         await browser.saveScreenshot('test/screenshots/inputValue.png')
     })
 
-    it('Переход на страницу ввода случайных значений', async function(){
+    it('Переход на страницу регистрации', async function(){
         await SingUp.clickSingUp()
         await HomeSing.emailContainer.waitForDisplayed({
             timeout:5000
@@ -32,7 +31,7 @@ describe('Ввод произвольных значений в форму ре�
         await expect(HomeSing.welcomeText).toHaveText("Welcome to GitHub! Let's begin the adventure")
     })
 
-    it('Ввод рандомной почты', async function() {
+    it('Открытие поля ввода пароля', async function() {
         console.log("Email: " + await HomeSing.email.getValue())
         await browser.pause(500) //TODO: временное решение
         await HomeSing.emailContinueClick()
@@ -42,7 +41,7 @@ describe('Ввод произвольных значений в форму ре�
         await expect(HomeSing.passwordContainer).toBeDisplayed()
     })
 
-    it('Ввод рандомного пароля', async function() {
+    it('Ввод случайного пароля и открытие поля ввода логина', async function() {
         let password = Rand.password()
         await HomeSing.password.setValue(password)
         console.log("Password: " + await HomeSing.password.getValue())
@@ -54,7 +53,7 @@ describe('Ввод произвольных значений в форму ре�
         await expect(HomeSing.usernameContainer).toBeDisplayed()
     })
 
-    it('Ввод рандомного userName', async function() {
+    it('Ввод случайного логина и открытие поля ввода подписки на рассылки', async function() {
         let login = Rand.userName('HomeSing')
         await HomeSing.username.setValue(login)
         console.log("UserName: " + await HomeSing.username.getValue())
@@ -64,9 +63,10 @@ describe('Ввод произвольных значений в форму ре�
             timeout:5000
         })
         await expect(HomeSing.optContainer).toBeDisplayed()
+
     })
 
-    it('Would you like to receive product updates and announcements via email?', async function(){
+    it('Нажатина на клавишу "Continue" в поле подписки на рассылки', async function(){
         await expect(HomeSing.labelOptContainer).toHaveTextContaining('Would you like')
         await browser.pause(999) //TODO: временное решение
         await HomeSing.optContinueClick()
@@ -74,11 +74,9 @@ describe('Ввод произвольных значений в форму ре�
             timeout:5000
         })
         await expect(HomeSing.capchaContainer).toBeDisplayed()
-    })
-
-    it('Capcha and submit container', async function(){
         await expect(HomeSing.capchaText).toHaveText('Verify your account')
     })
+
 
     it('Скриншот формы регистрации', async function() {
         await HomeSing.welcomeText.scrollIntoView()
