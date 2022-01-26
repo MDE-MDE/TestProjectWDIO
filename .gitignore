@@ -1,2 +1,2 @@
-test/screenshots/*
+test/screenshots/*.png
 node_modules/*
