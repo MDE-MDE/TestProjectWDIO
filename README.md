@@ -2,9 +2,13 @@
 
 Для запуска проекта должны быть установлены версии пакетов или выше
 
-![Скриншот 24-01-2022 220930](https://user-images.githubusercontent.com/52196281/150831267-30c37cfb-1758-4add-98e3-6fa8a1533ef0.jpg)
+![Снимок экрана 2022-01-25 131314](https://user-images.githubusercontent.com/52196281/151200763-d8caacb8-fdb3-49f7-9919-ff33c8e6ce85.png)
 
 npm ci - для установки всех зависимостей
+
+Необходимо создать папку (screenshots) в директории test:
+
+![Скриншот 26-01-2022 211110](https://user-images.githubusercontent.com/52196281/151201237-f2b8ce4d-801b-45bf-bd41-d6de643c1a6a.jpg)
 
 npm test - для запуска тестов
 
