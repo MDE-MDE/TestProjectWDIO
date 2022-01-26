@@ -39,6 +39,10 @@ export class NavMenuHeader{
         return $('[data-test-selector="nav-search-input"]')
     }
 
+    get searchResult(){
+        return $('#jump-to-results')
+    }
+
     get searchBtn(){
         return $('a[data-target-type="Search"]')
     }

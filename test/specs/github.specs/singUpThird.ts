@@ -8,22 +8,21 @@ const SingUp = new SingUpPage()
 const Rand = new RandomValue()
 const HomeSing = new HomeSingUp()
 
-describe('Открытие формы регистрации github из футера', () => {
+describe('Открытие формы регистрации из футера', () => {
     it('Открытие главной страницы github', async () => {
-        //await browser.setWindowSize(1280, 720)
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
         console.log(await browser.getTitle())
     })
 
-    it('Переход на страницу регистрации с помощью кнопки на риббоне', async function(){
+    it('Переход на страницу регистрации с помощью кнопки в футере', async function(){
         await SingUp.footerContainer.scrollIntoView()
         await expect(SingUp.footerContainer).toHaveText('Make your contribution')
         await SingUp.clickFooterSingUp()
         await expect(browser).toHaveTitle('Join GitHub · GitHub')
     })
     
-    it('Переход на страницу ввода случайных значений', async function(){
+    it('Форма регистрации', async function(){
         await HomeSing.emailContainer.waitForDisplayed({
             timeout:5000
         })
@@ -31,7 +30,7 @@ describe('Открытие формы регистрации github из фут�
         await expect(HomeSing.welcomeText).toHaveText("Welcome to GitHub! Let's begin the adventure")
     })
 
-    it('Ввод рандомной почты', async function() {
+    it('Ввод случайной почты и открытие поля ввода пароля', async function() {
         let email = Rand.emailName('Test')
         await HomeSing.email.setValue(email)
         console.log("Email: " + await HomeSing.email.getValue())
@@ -43,7 +42,7 @@ describe('Открытие формы регистрации github из фут�
         await expect(HomeSing.passwordContainer).toBeDisplayed()
     })
 
-    it('Ввод рандомного пароля', async function() {
+    it('Ввод случайного пароля и открытие поля ввода логина', async function() {
         let password = Rand.password()
         await HomeSing.password.setValue(password)
         console.log("Password: " + await HomeSing.password.getValue())
@@ -55,7 +54,7 @@ describe('Открытие формы регистрации github из фут�
         await expect(HomeSing.usernameContainer).toBeDisplayed()
     })
 
-    it('Ввод рандомного userName', async function() {
+    it('Ввод рандомного логина и открытие поля подписки на рассылки', async function() {
         let login = Rand.userName('HomeSing')
         await HomeSing.username.setValue(login)
         console.log("UserName: " + await HomeSing.username.getValue())
@@ -67,7 +66,7 @@ describe('Открытие формы регистрации github из фут�
         await expect(HomeSing.optContainer).toBeDisplayed()
     })
 
-    it('Would you like to receive product updates and announcements via email?', async function(){
+    it('Нажатие на клавишу "Continue" в поле подписки на рассылки', async function(){
         await expect(HomeSing.labelOptContainer).toHaveTextContaining('Would you like')
         await browser.pause(999) //TODO: временное решение
         await HomeSing.optContinueClick()
@@ -75,9 +74,6 @@ describe('Открытие формы регистрации github из фут�
             timeout:5000
         })
         await expect(HomeSing.capchaContainer).toBeDisplayed()
-    })
-
-    it('Capcha and submit container', async function(){
         await expect(HomeSing.capchaText).toHaveText('Verify your account')
     })
 
@@ -85,7 +81,7 @@ describe('Открытие формы регистрации github из фут�
         await HomeSing.welcomeText.scrollIntoView()
         await HomeSing.password.click()
         await HomeSing.visiblePassword.click()
-        await browser.saveScreenshot('test/screenshots/singUpPage2.png')
+        await browser.saveScreenshot('test/screenshots/singUpPage3.png')
         await expect(browser).toHaveUrlContaining('https://github.com/signup')
     })
 })

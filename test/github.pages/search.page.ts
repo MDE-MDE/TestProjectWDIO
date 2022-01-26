@@ -14,4 +14,8 @@ export class SearchPage{
     async clickFirstRepo(){
         await this.repoList[0].$('a').click()
     }
+
+    get selectedLang(){
+        return $('.selected [aria-hidden="true"]')
+    }
 }

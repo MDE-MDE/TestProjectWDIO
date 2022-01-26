@@ -1,36 +1,32 @@
-import { ExploreGitHubPage } from "../../github.pages/exploreGitHub.page";
 import { NavMenuHeader } from "../../github.pages/navMenu.header";
 import { OpenPage } from "../../github.pages/open.page";
 import { SearchPage } from "../../github.pages/search.page";
-import { SingUpPage } from "../../github.pages/singUp.page";
 
 const BrowserPage = new OpenPage()
 const NavMenu = new NavMenuHeader()
-const ExploreGitHub = new ExploreGitHubPage()
-const SingUp = new SingUpPage()
 const Search = new SearchPage()
 
-describe('Search on the GitHub page', ()=>{
+describe('Поиск в GitHub', ()=>{
     it('Открытие главной страницы github', async () => {
-        //await browser.setWindowSize(1280, 720)
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
         console.log(await browser.getTitle())
     })
 
-    it('Set value in search input', async function(){
+    it('Ввод текста в поле ввода поиска', async function(){
         await NavMenu.searchInput.setValue('webdriverIO')
+        await expect(NavMenu.searchResult).toBeDisplayed()
+    })
+
+    it('Страница поиска с полученными результатами и выбор языка TypeScript в левой колонке', async function(){
         await NavMenu.clickSearchBtn()
-    })
-
-    it('Select languages in left column', async function(){
         await Search.clickTypeScript()
+        await expect(Search.selectedLang).toBeDisplayed()
     })
 
-    it('Click on the first repo', async function(){
+    it('Нажатие на первый репозиторий', async function(){
         await Search.clickFirstRepo()
         await expect(browser).toHaveUrlContaining('webdriverio')
         await browser.saveScreenshot('test/screenshots/topicsPage.png')
-        await browser.pause(5000)
     })
 })

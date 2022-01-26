@@ -25,9 +25,9 @@ export const config: WebdriverIO.Config = {
     specs: [
         //'./test/specs/**/*.ts'
         //'./test/specs/github.specs/**/*.ts'
-        './test/specs/github.specs/singUpFirst.ts'
+        //'./test/specs/github.specs/singUp*.ts'
         //'./test/specs/github.specs/careers.ts'
-        //'./test/specs/secondHomework.ts'
+        './test/specs/github.specs/searchWDIO.ts'
     ],
     // Patterns to exclude.
     exclude: [

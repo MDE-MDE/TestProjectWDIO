@@ -8,7 +8,7 @@ const SingUp = new SingUpPage()
 const Rand = new RandomValue()
 const HomeSing = new HomeSingUp()
 
-describe('Открыть и заполнить форму регистрации из поля ввода почты', () => {
+describe('Открытие формы регистрации из поля ввода почты', () => {
     it('Открытие главной страницы github', async () => {
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
@@ -53,7 +53,7 @@ describe('Открыть и заполнить форму регистрации
         await expect(HomeSing.usernameContainer).toBeDisplayed()
     })
 
-    it('Ввод случайного логина и открытие поля ввода подписки на рассылки', async function() {
+    it('Ввод случайного логина и открытие поля подписки на рассылки', async function() {
         let login = Rand.userName('HomeSing')
         await HomeSing.username.setValue(login)
         console.log("UserName: " + await HomeSing.username.getValue())
@@ -63,10 +63,9 @@ describe('Открыть и заполнить форму регистрации
             timeout:5000
         })
         await expect(HomeSing.optContainer).toBeDisplayed()
-
     })
 
-    it('Нажатина на клавишу "Continue" в поле подписки на рассылки', async function(){
+    it('Нажатие на клавишу "Continue" в поле подписки на рассылки', async function(){
         await expect(HomeSing.labelOptContainer).toHaveTextContaining('Would you like')
         await browser.pause(999) //TODO: временное решение
         await HomeSing.optContinueClick()
@@ -76,7 +75,6 @@ describe('Открыть и заполнить форму регистрации
         await expect(HomeSing.capchaContainer).toBeDisplayed()
         await expect(HomeSing.capchaText).toHaveText('Verify your account')
     })
-
 
     it('Скриншот формы регистрации', async function() {
         await HomeSing.welcomeText.scrollIntoView()
