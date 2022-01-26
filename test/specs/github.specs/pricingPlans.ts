@@ -14,7 +14,7 @@ const NavMenu = new NavMenuHeader()
 
 describe('MouseHover на выпадающий список Pricing', ()=>{
     it('Открытие главной страницы github', async () => {
-        await browser.setWindowSize(1280, 720)
+        //await browser.setWindowSize(1280, 720)
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
         console.log(await browser.getTitle())

@@ -12,7 +12,7 @@ const Careers = new CareersPage()
 
 describe('Ввод произвольных значений в форму регистрации github', () => {
     it('Открытие главной страницы github', async () => {
-        await browser.setWindowSize(1280, 720)
+        //await browser.setWindowSize(1280, 720)
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
         console.log(await browser.getTitle())
