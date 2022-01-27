@@ -24,6 +24,6 @@ export class CreateAccountPage{
     }
 
     get success(){
-        return $('#input-check-5258')
+        return $('.success')
     }
 }

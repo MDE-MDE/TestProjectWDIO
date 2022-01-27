@@ -8,15 +8,14 @@ const NavMenu = new NavMenuHeader()
 const ExploreGitHub = new ExploreGitHubPage()
 const SingUp = new SingUpPage()
 
-describe('MouseHover на выпадающий список Explore', ()=>{
+describe('Открытие страницы Explore из выпадающего списка Explore', ()=>{
     it('Открытие главной страницы github', async () => {
-        //await browser.setWindowSize(1280, 720)
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
         console.log(await browser.getTitle())
     })
 
-    it('Expore dropdown menu', async function(){
+    it('Открытие выпадающего списка Expore', async function(){
         await SingUp.canvasGlobal.moveTo() //TODO: временное решение
         await NavMenu.summary[1].moveTo()
         console.log("Menu name: " + await NavMenu.summary[1].getText())
@@ -24,12 +23,12 @@ describe('MouseHover на выпадающий список Explore', ()=>{
         await expect(NavMenu.dropDown[1]).toBeDisplayed()
     })
 
-    it('Select Plans in dropdown menu', async function(){
+    it('Выбор пун Plans', async function(){
         await NavMenu.clickExploreGitHub()
         await expect(browser).toHaveUrlContaining('/explore')
     })
 
-    it('Click on the Topics tab', async function(){
+    it('Открытие вкладки Topics', async function(){
         await ExploreGitHub.clickTopics()
         await expect(ExploreGitHub.h1).toHaveText('Topics')
         await browser.saveScreenshot('test/screenshots/topicsPage.png')

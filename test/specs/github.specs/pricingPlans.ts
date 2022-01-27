@@ -12,15 +12,14 @@ const CreateAccount = new CreateAccountPage()
 const Rand = new RandomValue()
 const NavMenu = new NavMenuHeader()
 
-describe('MouseHover на выпадающий список Pricing', ()=>{
+describe('Открытие формы регистрации из выпадающего списка Pricing', ()=>{
     it('Открытие главной страницы github', async () => {
-        //await browser.setWindowSize(1280, 720)
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
         console.log(await browser.getTitle())
     })
 
-    it('Pricing dropdown menu', async function(){
+    it('Открытие выпадающего списка Pricing', async function(){
         await SingUp.canvasGlobal.moveTo() //TODO: временное решение
         await NavMenu.summary[2].moveTo()
         console.log("Menu name: " + await NavMenu.summary[2].getText())
@@ -28,41 +27,43 @@ describe('MouseHover на выпадающий список Pricing', ()=>{
         await expect(NavMenu.dropDown[2]).toBeDisplayed()
     })
 
-    it('Select Plans in dropdown menu', async function(){
+    it('Нажатие на пункт меню Plans', async function(){
         await NavMenu.clickPricingPlans()
         await expect(PricingPlans.pricingH1).toHaveTextContaining('Choose the plan that’s right for you.')
     })
 
-    it('Join for free plan', async function(){
+    it('Нажатие на кнопку Join for free plan', async function(){
         await PricingPlans.free.scrollIntoView()
         await PricingPlans.clickFree()
         await expect(CreateAccount.heading).toHaveText('Create your account')
     })
 
-    it('Random username', async function(){
+    it('Вставка случайного имени', async function(){
         let username = Rand.userName('CrAcc')
         await CreateAccount.username.setValue(username)
         console.log("Username: " + await CreateAccount.username.getValue())
-        //await expect(CreateAccount.success).toHaveTextContaining('is available.')
+        await CreateAccount.username.click()
+        await expect(CreateAccount.success).toBeDisplayed()
     })
 
-    it('Random email address', async function(){
+    it('Вставка случайной почты', async function(){
         let email = Rand.emailName('Test')
         await CreateAccount.email.setValue(email)
         console.log("Email: " + await CreateAccount.email.getValue())
     })
 
-    it('Random password', async function(){
+    it('Вставка случайного пароля', async function(){
         let password = Rand.password()
         await CreateAccount.password.setValue(password)
         console.log("Password: " + await CreateAccount.password.getValue())
     })
 
-    it('Click Email preferences', async function(){
+    it('Подписка на рассылки', async function(){
         await CreateAccount.clickEmailPreferences()
+        await expect(CreateAccount.emailPreferences).toBeSelected()
     })
 
-    it('Finish', async function(){
+    it('Скриншот формы создания аккаунта', async function(){
         await CreateAccount.heading.scrollIntoView()
         await browser.saveScreenshot('test/screenshots/createAccountPage.png')
     })
