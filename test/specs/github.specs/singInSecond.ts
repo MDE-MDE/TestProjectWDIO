@@ -8,7 +8,7 @@ const SingUp = new SingUpPage()
 const SingIn = new SingInPage()
 const Rand = new RandomValue()
 
-describe('Открытие и заполнение формы входа с учетными данными', () => {
+describe('Открытие и заполнение формы входа без учетных данных или с частичным заполнением', () => {
     it('Открытие главной страницы github', async () => {
         await BrowserPage.openPage("https://github.com/")
         expect(browser).toHaveTitle('GitHub: Where the world builds software · GitHub')
