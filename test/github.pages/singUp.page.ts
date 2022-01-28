@@ -51,4 +51,12 @@ export class SingUpPage {
     async clickCareers(){
         await this.careers.click()
     }
+
+    get singInBtn(){
+        return $('[href="/login"]')
+    }
+
+    async clickSingInBtn(){
+        await this.singInBtn.click()
+    }
 }
