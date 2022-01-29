@@ -13,3 +13,10 @@ npm test - для запуска тестов
 ![image](https://user-images.githubusercontent.com/52196281/151339374-e7216314-b454-4beb-875f-137264b97f97.png)
 
 Тест-кейсы: https://docs.google.com/spreadsheets/d/1B6_25_9XxdGlKoZyvCvB-x4lFRpFtW4itxwHt9u4Tao/edit?usp=sharing
+
+
+---
+
+Пример прохождения теста
+
+https://user-images.githubusercontent.com/52196281/151665436-938cd2f3-3d1e-43e1-9f8c-f4e378dfb19a.mp4
