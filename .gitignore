@@ -1,2 +1,4 @@
 test/screenshots/*.png
 node_modules/*
+test/specs/*Homework.ts
+test/pageWDIO
