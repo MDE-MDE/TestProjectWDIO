@@ -19,7 +19,7 @@ describe('Открытие формы регистрации из выпадаю
         console.log(await browser.getTitle())
     })
 
-    it('Открытие выпадающего списка Pricing', async function(){
+    it('Открытие выпадающего списка Pricing', async () => {
         await SingUp.canvasGlobal.moveTo() //TODO: временное решение
         await NavMenu.summary[2].moveTo()
         console.log("Menu name: " + await NavMenu.summary[2].getText())
@@ -27,18 +27,18 @@ describe('Открытие формы регистрации из выпадаю
         await expect(NavMenu.dropDown[2]).toBeDisplayed()
     })
 
-    it('Нажатие на пункт меню Plans', async function(){
+    it('Нажатие на пункт меню Plans', async () => {
         await NavMenu.clickPricingPlans()
         await expect(PricingPlans.pricingH1).toHaveTextContaining('Choose the plan that’s right for you.')
     })
 
-    it('Нажатие на кнопку Join for free plan', async function(){
+    it('Нажатие на кнопку Join for free plan', async () => {
         await PricingPlans.free.scrollIntoView()
         await PricingPlans.clickFree()
         await expect(CreateAccount.heading).toHaveText('Create your account')
     })
 
-    it('Вставка случайного имени', async function(){
+    it('Вставка случайного имени', async () => {
         let username = Rand.userName('CrAcc')
         await CreateAccount.username.setValue(username)
         console.log("Username: " + await CreateAccount.username.getValue())
@@ -46,24 +46,24 @@ describe('Открытие формы регистрации из выпадаю
         await expect(CreateAccount.success).toBeDisplayed()
     })
 
-    it('Вставка случайной почты', async function(){
+    it('Вставка случайной почты', async () => {
         let email = Rand.emailName('Test')
         await CreateAccount.email.setValue(email)
         console.log("Email: " + await CreateAccount.email.getValue())
     })
 
-    it('Вставка случайного пароля', async function(){
+    it('Вставка случайного пароля', async () => {
         let password = Rand.password()
         await CreateAccount.password.setValue(password)
         console.log("Password: " + await CreateAccount.password.getValue())
     })
 
-    it('Подписка на рассылки', async function(){
+    it('Подписка на рассылки', async () => {
         await CreateAccount.clickEmailPreferences()
         await expect(CreateAccount.emailPreferences).toBeSelected()
     })
 
-    it('Скриншот формы создания аккаунта', async function(){
+    it('Скриншот формы создания аккаунта', async () => {
         await CreateAccount.heading.scrollIntoView()
         await browser.saveScreenshot('test/screenshots/createAccountPage.png')
     })

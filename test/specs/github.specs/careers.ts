@@ -13,23 +13,23 @@ describe('Открытие страницы вакансий и вывод в к
         console.log(await browser.getTitle())
     })
 
-    it('Проскролить к футеру', async function(){
+    it('Проскролить к футеру', async () => {
         await SingUp.footer.scrollIntoView()
         await expect(SingUp.footer).toBeDisplayedInViewport()
         await browser.saveScreenshot('test/screenshots/footer.png')
     })
 
-    it('Переход на страницу вакансий', async function(){
+    it('Переход на страницу вакансий', async () => {
         await SingUp.clickCareers()
         await expect(Careers.headingText).toHaveText('Come build the home for all developers')
     })
 
-    it('Нажатие на кнопку открытых вакансий', async function() {
+    it('Нажатие на кнопку открытых вакансий', async () => {
         await Careers.clickOpenPositionsBtn()
         await expect(Careers.openPositions).toBeDisplayedInViewport()
     })
 
-    it('Вывод в консоль наименование вакансий', async function() {
+    it('Вывод в консоль наименование вакансий', async () => {
         await Careers.outputPositions()
     })
 })

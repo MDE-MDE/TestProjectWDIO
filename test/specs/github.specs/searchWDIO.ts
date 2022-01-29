@@ -13,18 +13,18 @@ describe('Поиск в GitHub', ()=>{
         console.log(await browser.getTitle())
     })
 
-    it('Ввод текста в поле ввода поиска', async function(){
+    it('Ввод текста в поле ввода поиска', async () => {
         await NavMenu.searchInput.setValue('webdriverIO')
         await expect(NavMenu.searchResult).toBeDisplayed()
     })
 
-    it('Страница поиска с полученными результатами и выбор языка TypeScript в левой колонке', async function(){
+    it('Страница поиска с полученными результатами и выбор языка TypeScript в левой колонке', async () => {
         await NavMenu.clickSearchBtn()
         await Search.clickTypeScript()
         await expect(Search.selectedLang).toBeDisplayed()
     })
 
-    it('Нажатие на первый репозиторий', async function(){
+    it('Нажатие на первый репозиторий', async () => {
         await Search.clickFirstRepo()
         await expect(browser).toHaveUrlContaining('webdriverio')
         await browser.saveScreenshot('test/screenshots/topicsPage.png')

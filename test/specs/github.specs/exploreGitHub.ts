@@ -15,7 +15,7 @@ describe('Открытие страницы Explore из выпадающего 
         console.log(await browser.getTitle())
     })
 
-    it('Открытие выпадающего списка Expore', async function(){
+    it('Открытие выпадающего списка Expore', async () => {
         await SingUp.canvasGlobal.moveTo() //TODO: временное решение
         await NavMenu.summary[1].moveTo()
         console.log("Menu name: " + await NavMenu.summary[1].getText())
@@ -23,12 +23,12 @@ describe('Открытие страницы Explore из выпадающего 
         await expect(NavMenu.dropDown[1]).toBeDisplayed()
     })
 
-    it('Выбор пун Plans', async function(){
+    it('Выбор пун Plans', async () => {
         await NavMenu.clickExploreGitHub()
         await expect(browser).toHaveUrlContaining('/explore')
     })
 
-    it('Открытие вкладки Topics', async function(){
+    it('Открытие вкладки Topics', async () => {
         await ExploreGitHub.clickTopics()
         await expect(ExploreGitHub.h1).toHaveText('Topics')
         await browser.saveScreenshot('test/screenshots/topicsPage.png')
